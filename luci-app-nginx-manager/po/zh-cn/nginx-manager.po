@@ -1,0 +1,17 @@
+msgid "Nginx Manager"
+msgstr "Nginx管理器"
+
+msgid "A simple Nginx manager"
+msgstr "一个简易的Nginx管理器"
+
+msgid "Web site list"
+msgstr "网站列表"
+
+msgid "File Path"
+msgstr "文件路径"
+
+msgid "Configuration File"
+msgstr "配置文件"
+
+msgid "General Info"
+msgstr "基础信息"
