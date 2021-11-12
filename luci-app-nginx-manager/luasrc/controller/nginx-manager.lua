@@ -5,11 +5,12 @@ function index()
     local isok
     if file:find('CONF=""') ~= nil then
     	file=file:gsub('CONF=""', 'CONF="/etc/nginx/nginx.conf"')
+    	file=file:gsub("%[[%p%s]+z[%p%s]+CONF[%p%s]+return[%p%s]+already[%p%s]+called%p","#%1")
     	nixio.fs.writefile("/etc/init.d/nginx", file)
     	isok=1
 	end
     if not nixio.fs.access("/etc/nginx/nginx.conf") then
-        nixio.fs.copyr("/etc/nginx/uci.conf", "/etc/nginx/nginx.conf")
+        nixio.fs.copyr("/var/lib/nginx/uci.conf", "/etc/nginx/nginx.conf")
         isok=1
     end
     if isok then
