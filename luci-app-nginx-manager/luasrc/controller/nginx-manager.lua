@@ -1,19 +1,9 @@
 module("luci.controller.nginx-manager", package.seeall)
 
 function index()
-    file=nixio.fs.readfile("/etc/init.d/nginx")
-    local isok
-    if file:find('CONF=""') ~= nil then
-    	file=file:gsub('CONF=""', 'CONF="/etc/nginx/nginx.conf"')
-    	file=file:gsub("%[[%p%s]+z[%p%s]+CONF[%p%s]+return[%p%s]+already[%p%s]+called%p","#%1")
-    	nixio.fs.writefile("/etc/init.d/nginx", file)
-    	isok=1
-	end
+    nixio.fs.rename ("/etc/nginx/uci.conf", "/etc/nginx/ucibak.conf")
     if not nixio.fs.access("/etc/nginx/nginx.conf") then
         nixio.fs.copyr("/var/lib/nginx/uci.conf", "/etc/nginx/nginx.conf")
-        isok=1
-    end
-    if isok then
         luci.sys.call("/etc/init.d/nginx restart")
     end
     file=nixio.fs.readfile("/etc/uwsgi/vassals/luci-webui.ini")
