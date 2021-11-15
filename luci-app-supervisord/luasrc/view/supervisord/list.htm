@@ -4,16 +4,20 @@
   <table class="cbi-section-table" id="task-list">
     <tbody>
     <tr class="cbi-section-table-titles">
-      <th class="cbi-section-table-cell" style="width:130px!important"><%:Name%></th>
+      <th class="cbi-section-table-cell" style="width:120px!important"><%:Name%></th>
+      <th class="cbi-section-table-cell" style="width:120px!important"><%:Versions%></th>
       <th class="cbi-section-table-cell" style="width:100px!important"><%:Status%></th>
       <th class="cbi-section-table-cell" style="width:300px!important"><%:Description%></th>
       <th class="cbi-section-table-cell"><%:Configuration File%></th>
-      <th class="cbi-section-table-cell" style="width:400px!important"><%:Action%></th>
+      <th class="cbi-section-table-cell" style="width:355px!important"><%:Action%></th>
     </tr>
     <% for _,item in pairs(self.list) do %>
     <tr class="cbi-section-table-row" id="<%=item[2]:gsub('/etc/supervisord/program/', ""):gsub('.ini', "")%>-main">
     <td class="cbi-value-field">
       <%=item[1]%>
+    </td>
+    <td class="cbi-value-field">
+      <%=item[3]%>
     </td>
     <td class="cbi-value-field" id="<%=item[1]%>-status">
     </td>

@@ -3,7 +3,7 @@
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@nginx-manager[-1]
 	add ucitrack nginx-manager
-	set ucitrack.@nginx-manage[-1].init=nginx-manager
+	set ucitrack.@nginx-manage[-1].init=nginx
 	commit ucitrack
 EOF
 

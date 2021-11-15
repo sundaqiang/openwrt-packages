@@ -1,4 +1,5 @@
 local fs = require "nixio.fs"
+local sys = require "luci.sys"
 
 local m = Map("supervisord",translate("Supervisord"), translate("A golang development process management"))
 m:section(SimpleSection).template  = "supervisord/index"
@@ -31,11 +32,13 @@ l.template = "supervisord/list"
 l.list={}
 index=1
 for filelist in fs.dir("/etc/supervisord/program") do
-    if string.find(filelist,".ini$") ~= nil then
+    if filelist:find(".ini$") ~= nil then
         name=fs.readfile("/etc/supervisord/program/" .. filelist)
         l.list[index]={}
-        l.list[index][1]=string.match(name, "program:(%a+)")
+        l.list[index][1]=name:match("program:(%a+)")
         l.list[index][2]="/etc/supervisord/program/" .. filelist
+		local cmd=name:match("directory=([%a%d%p ]+)") .. "/" .. name:match("getversions=([%a%d%p ]+)")
+		l.list[index][3]=sys.exec(cmd)
         index=index+1
     end
 end

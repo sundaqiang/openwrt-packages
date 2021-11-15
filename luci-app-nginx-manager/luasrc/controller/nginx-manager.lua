@@ -27,4 +27,13 @@ function index()
     end
     x:commit("nginx-manager")
     entry({"admin", "services", "nginx-manager"}, cbi("nginx-manager"), _("Nginx Manager"), 95).dependent = true
+    entry({"admin", "services", "nginx-manager", "setstatus"}, call("setstatus")).leaf = true
+end
+
+function setstatus()
+	local e = {}
+	local mode = luci.http.formvalue('mode')
+	e.code=luci.sys.call("/etc/init.d/nginx " .. mode)
+	luci.http.prepare_content("application/json")
+	luci.http.write_json(e)
 end

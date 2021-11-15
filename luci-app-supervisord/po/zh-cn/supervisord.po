@@ -55,6 +55,9 @@ msgstr "检查失败。请再试一次"
 msgid "The update failed. Please try again"
 msgstr "更新失败。请再试一次"
 
+msgid "Versions"
+msgstr "版本"
+
 msgid "Only letters can be used for names!"
 msgstr "只有字母可以用来命名！"
 

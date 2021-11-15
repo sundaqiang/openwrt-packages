@@ -9,13 +9,20 @@ command=
 ;执行命令的路径，必须
 directory=
 
+;需要备份的文件，必须
+backupfile=
+
+;获取版本号命令，必须
+getversions=
+
 ;在supervisord启动的时候也自动启动
 autostart=true
 
 ;启动10秒后没有异常退出，就表示进程正常启动了，默认为1秒
 startsecs=10
 
-;程序退出后自动重启,可选值：[unexpected,true,false]，默认为unexpected，表示进程意外杀死后才重启
+;程序退出后自动重启,可选值：[unexpected,true,false]
+;默认为unexpected，表示进程意外杀死后才重启
 autorestart=true
 
 ;启动失败自动重试次数，默认是3

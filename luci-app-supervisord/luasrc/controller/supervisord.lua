@@ -168,8 +168,18 @@ function savetask()
 	local name = luci.http.formvalue('name')
 	local data = luci.http.formvalue('data')
 	data = data:gsub("\r\n?", "\n")
-	e.code=nixio.fs.writefile ('/etc/supervisord/program/' .. name .. '.ini', data)
+	file = '/etc/supervisord/program/' .. name .. '.ini'
+	e.code=nixio.fs.writefile (file, data)
     if e.code then
+        sysupgrade=nixio.fs.readfile("/etc/sysupgrade.conf")
+        if not sysupgrade:find(file) then
+            sysupgrade=sysupgrade .. '\n' .. file
+        end
+        backupfile=data:match("directory=([%a%d%p ]+)") .. "/" .. data:match("backupfile=([%a%d%p]+)")
+        if not sysupgrade:find(backupfile:gsub("%p", "%%%1")) then
+            sysupgrade=sysupgrade .. '\n' .. backupfile
+        end
+        nixio.fs.writefile ("/etc/sysupgrade.conf", sysupgrade)
         luci.sys.call("supervisord ctl reload")
         e.code=1
     else

@@ -1,7 +1,7 @@
 local fs = require "nixio.fs"
 local m = Map("nginx-manager",translate("Nginx Manager"), translate("A simple Nginx manager"))
-m.template = "nginx-manager/index"
 s = m:section(TypedSection, "nginx", translate("Web site list"))
+s.template = "nginx-manager/index"
 s.addremove = true
 s.anonymous = false
 s:tab("general", translate("General Info"))
@@ -10,7 +10,7 @@ s:taboption("general", DummyValue, "name", translate("name"))
 s:taboption("general", DummyValue, "filepath", translate("File Path"))
 file=s:taboption("server", TextValue, "")
 file.template = "cbi/tvalue"
-file.rows = 25
+file.rows = 15
 file.wrap = "off"
 file.rmempty = true
 
@@ -39,9 +39,5 @@ function file.cfgvalue(self,section)
 end
 function file.write(self, section, value)
 	sync_value_to_file(value, self.map:get(section, "filepath"))
-end
-local apply = luci.http.formvalue("cbi.apply")
-if apply then
-    luci.sys.call("/etc/init.d/nginx reload")
 end
 return m
