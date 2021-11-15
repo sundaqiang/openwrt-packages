@@ -37,8 +37,8 @@ for filelist in fs.dir("/etc/supervisord/program") do
         l.list[index]={}
         l.list[index][1]=name:match("program:(%a+)")
         l.list[index][2]="/etc/supervisord/program/" .. filelist
-		local cmd=name:match("directory=([%a%d%p ]+)") .. "/" .. name:match("getversions=([%a%d%p ]+)")
-		l.list[index][3]=sys.exec(cmd)
+        local cmd=name:match("directory=([%a%d%p ]+)") .. "/" .. name:match("getversions=([%a%d%p ]+)")
+        l.list[index][3]=sys.exec(cmd)
         index=index+1
     end
 end
