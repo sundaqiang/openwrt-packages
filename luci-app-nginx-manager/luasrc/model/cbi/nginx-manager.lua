@@ -10,7 +10,7 @@ s:taboption("general", DummyValue, "name", translate("name"))
 s:taboption("general", DummyValue, "filepath", translate("File Path"))
 file=s:taboption("server", TextValue, "")
 file.template = "cbi/tvalue"
-file.rows = 15
+file.rows = 25
 file.wrap = "off"
 file.rmempty = true
 
