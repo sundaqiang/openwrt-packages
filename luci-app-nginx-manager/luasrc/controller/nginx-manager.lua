@@ -7,7 +7,7 @@ function index()
         luci.sys.call("/etc/init.d/nginx restart")
     end
     file=nixio.fs.readfile("/etc/uwsgi/vassals/luci-webui.ini")
-    if file:match("limit%pas[%p%s]+(%d+)") ~= "5000" then
+    if tonumber(file:match("limit%pas[%p%s]+(%d+)")) < 5000 then
     	file=file:gsub("limit%pas[%p%s]+(%d+)","limit-as = 5000")
     	nixio.fs.writefile("/etc/uwsgi/vassals/luci-webui.ini", file)
     	luci.sys.call("/etc/init.d/uwsgi restart")
