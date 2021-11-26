@@ -4,15 +4,19 @@
 [program:demo]
 
 ;程序启动命令，必须
+;command=xxxxx
 command=
 
 ;执行命令的路径，必须
+;directory=/usr/bin
 directory=
 
-;需要备份的文件，必须
+;需要备份文件的完整路径，多个文件以||分割，必须
+;backupfile=/usr/bin/xxxxx||/etc/yyyyy
 backupfile=
 
 ;获取版本号命令，必须
+;getversions=xxxxx version
 getversions=
 
 ;在supervisord启动的时候也自动启动
