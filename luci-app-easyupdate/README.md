@@ -5,12 +5,12 @@
 
 ### 使用方法
 
-#### 需在下方步骤下添加
+#### 需在下方步骤后
 ```yaml
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a -f
 ```
-#### 如下步骤
+#### 添加如下步骤
 ```yaml
     - name: Openwrt AutoUpdate
       run: |
